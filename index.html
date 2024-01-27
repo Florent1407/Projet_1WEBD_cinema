@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Home</title>
+</head>
+<body>
+    <!-- HAUT DE PAGE -->
+    <header>
+        <nav id="navbar">
+            <div id="link_navbar">
+                <ul>
+                    <li class="link">
+                        <img id=logo src="img/logo.png" alt="Image du compte">
+                    </li> 
+                    <li class="link">Home</li>
+                    <li class="link">Support</li>
+                    <li class="link">
+                        <div class="search">
+                            <img src="img/search.png" id="btn_search" alt="Bouton de recherche">
+                        </div>
+                    </li>
+                    <li class="link">
+                        <img id=login_account src="img/login-avatar.png" alt="Image du compte">
+                    </li>   
+                </ul>
+            </div>
+        </nav>
+        <section id="banner">
+            <div id="slider">
+                <div class="slide">
+                    <img src="img/test1.jpg" alt="" class="img_cover">
+                </div>
+                <div class="slide">
+                    <img src="img/test2.jpg" alt="" class="img_cover">
+                </div>
+                <div class="slide">
+                    <img src="img/test3.jpg" alt="" class="img_cover">
+                </div>
+                <div class="slide">
+                    <img src="img/couleur-pourpre-carrousel-web-pathe.jpg" alt="" class="img_cover">
+                </div>
+            </div>
+            <div class="arrow left-arrow">&lt;</div>
+            <div class="arrow right-arrow">&gt;</div>
+        </section>
+        
+        
+    </header>
+    <!-- FILMS -->
+    <main>
+        <h1>Films du moment</h1>
+        <div id="movies_container"></div>
+        <button id="loadMore">Charger plus de films</button>
+    </main>
+    <!-- BAS DE PAGE -->
+    <footer>
+        <p>&copy; 2024 CGV - Mentions légales - Made with Cléo et Florent.</p>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>
