@@ -1,55 +1,4 @@
-const apiKey = "5a0c7cf2";
-const baseURL = "https://www.omdbapi.com/";
-
-function getMovies() {
-  const url = `${baseURL}?apikey=${apiKey}&s=Avengers`;
-
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP! Statut: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      displayMovies(data.Search);
-    })
-    .catch((error) => {
-      console.error("Erreur lors de la récupération des films:", error);
-    });
-}
-
-function displayMovies(movies) {
-  const moviesContainer = document.getElementById("movies_container");
-
-  if (movies && movies.length > 0) {
-    movies.forEach((movie) => {
-      const movieElement = document.createElement("div");
-      movieElement.classList.add("movie");
-
-      const titleElement = document.createElement("h2");
-      titleElement.textContent = movie.Title;
-      movieElement.appendChild(titleElement);
-
-      const posterElement = document.createElement("img");
-      posterElement.src = movie.Poster;
-      posterElement.alt = `${movie.Title} Poster`;
-
-      posterElement.addEventListener("click", () => {
-        window.location.href = `movie.html?id=${movie.imdbID}`;
-      });
-
-      movieElement.appendChild(posterElement);
-
-      moviesContainer.appendChild(movieElement);
-    });
-  } else {
-    moviesContainer.innerHTML = "<p>No movies found</p>";
-  }
-}
-
-getMovies();
-
+//Bannière
 document.addEventListener("DOMContentLoaded", function () {
   const slider = document.getElementById("slider");
   const leftArrow = document.querySelector(".left-arrow");
@@ -83,3 +32,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
   showSlides(slideIndex);
 });
+
+//Films
+const apiKey = "5a0c7cf2";
+const baseURL = "https://www.omdbapi.com/";
+
+function getMovies() {
+  const url = `${baseURL}?apikey=${apiKey}&s=Avengers`;
+
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP! Statut: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      displayMovies(data.Search);
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la récupération des films:", error);
+    });
+}
+
+function displayMovies(movies) {
+  const moviesContainer = document.getElementById("movies-container");
+
+  if (movies && movies.length > 0) {
+    // Limiter à 8 films
+    const limitedMovies = movies.slice(0, 8);
+
+    limitedMovies.forEach((movie) => {
+      const movieElement = document.createElement("div");
+      movieElement.classList.add("movie");
+
+      const titleElement = document.createElement("h2");
+      titleElement.textContent = movie.Title;
+      movieElement.appendChild(titleElement);
+
+      const summaryElement = document.createElement("p");
+      summaryElement.textContent = movie.Plot;
+      summaryElement.classList.add("movie-resume");
+      movieElement.appendChild(summaryElement);
+
+      const posterElement = document.createElement("img");
+      posterElement.src = movie.Poster;
+      posterElement.alt = `${movie.Title} Poster`;
+
+      posterElement.addEventListener("click", () => {
+        window.location.href = `movie.html?id=${movie.imdbID}`;
+      });
+
+      movieElement.appendChild(posterElement);
+
+      moviesContainer.appendChild(movieElement);
+    });
+  } else {
+    moviesContainer.innerHTML = "<p>No movies found</p>";
+  }
+}
+
+getMovies();

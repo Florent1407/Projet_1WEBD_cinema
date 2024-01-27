@@ -2,20 +2,21 @@
 
 * {
     font-family: 'Poppins', sans-serif;
-    text-align: center;
+
     color: azure;
 }
 
 body {
-    background: linear-gradient(135deg, #001F3F, #003366, #004080, #16406a, #06213c);
+    background: linear-gradient( #040516, rgb(7, 44, 82), #040516, #16406a, #040516);
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 
 /* HAUT DE PAGE */
 #navbar {
-    background-color: #001F3F;
+    background-color: #040516;
     position: sticky;
     justify-content: start;
     top: 0;
@@ -32,7 +33,7 @@ body {
 }
 
 
-#link_navbar ul {
+#link-navbar ul {
     list-style: none;
     display: flex;
     justify-content: space-between;
@@ -44,11 +45,11 @@ body {
 .link #logo {
     width: 50px;
 }
-.link #login_account{
+.link #login-account{
     width: 30px;
 }
 
-#btn_search {
+#btn-search {
     margin-top: 3px;
     margin-left: 5px;
     width: 28px;
@@ -56,7 +57,7 @@ body {
     cursor: pointer;
 }
 
-.banner img.img_cover {
+.banner img.img-cover {
     max-width: 100%;
     height: auto;
 }
@@ -64,12 +65,9 @@ body {
 
 #banner {
     position: relative;
-    overflow: hidden;
-    text-align: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    color: rgb(255, 255, 255);
     position: relative;
 }
 
@@ -79,12 +77,13 @@ body {
 }
 
 .slide {
-    flex: 0 0 100%;
+    position: relative;
 }
 
-.img_cover {
+.img-cover {
     max-width: 100%;
     height: auto;
+    filter: blur(3px);
 }
 
 .arrow {
@@ -103,4 +102,55 @@ body {
 
 .right-arrow {
     right: 10px;
+}
+
+
+.slide-details {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    z-index: 1;
+    width:80%;
+}
+
+.slide-details h4 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.slide-details p {
+    margin: 10px 0;
+}
+
+.details-img {
+    width: 300px;
+}
+
+#movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .movie img {
+    max-width: 100%;
+    height: auto;
+  }
+
+
+/*Films*/
+.movie {
+    position: relative;
+    width: 300px; 
+    margin: 10px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+footer {
+    background-color: #040516;
 }
