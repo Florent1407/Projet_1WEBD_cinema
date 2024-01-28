@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,300&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+
+    color: azure;
+}
+
+body {
+    background: #16406a;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#navbar {
+    background-color: #040516;
+    position: sticky;
+    justify-content: start;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    text-align: center;
+}
+
+.banner img {
+    height: 350px;
+    justify-content: end;
+}
+
+
+#link-navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 0;
+}
+
+.link #logo {
+    width: 50px;
+}
+.link #login-account{
+    width: 30px;
+}
+
+#btn-search {
+    margin-top: 3px;
+    margin-left: 5px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.banner img.img-cover {
+    max-width: 100%;
+    height: auto;
+}
+
+
+#banner {
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+#search-bar {
+    display: flex;
+    gap: 10px;
+}
+
+#movie-name {
+    width: 80%;
+    max-width: 300px;
+    height: 50px;
+    font-size: 30px;
+    color: black;
+}
+
+#button-search {
+    width: 100%; /* Ajustez la taille du bouton à 10% de la largeur du conteneur #search-bar */
+    max-width: 130px; /* Ajustez la largeur maximale du bouton */
+    font-size: 20px;
+    height: 55px;
+    cursor: pointer;
+    color: black;
+}
+
+#search-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 50%; /* Ajustez la largeur du conteneur #search-bar */
+}
+
+#star-img {
+    width: 30px;
+    height: 30px;
+}
+
+footer {
+    background-color: #040516;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    font-size: 15px;
+}
