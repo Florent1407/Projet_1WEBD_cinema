@@ -10,7 +10,7 @@ body {
     background: #16406a;
     margin: 0;
     padding: 0;
-    text-align: center;
+    width: 100%;
 }
 
 #navbar {
@@ -41,9 +41,11 @@ body {
 
 .link #logo {
     width: 50px;
+    margin-left: 30px;
 }
 .link #login-account{
     width: 30px;
+    margin-right: 50px;
 }
 
 #btn-search {
@@ -77,31 +79,89 @@ body {
     width: 80%;
     max-width: 300px;
     height: 50px;
-    font-size: 30px;
+    font-size: 20px;
     color: black;
+    border-radius: 10px;
 }
 
 #button-search {
-    width: 100%; /* Ajustez la taille du bouton à 10% de la largeur du conteneur #search-bar */
-    max-width: 130px; /* Ajustez la largeur maximale du bouton */
+    width: 100%;
+    max-width: 130px;
     font-size: 20px;
     height: 55px;
     cursor: pointer;
     color: black;
+    border-radius: 10px;
+}
+
+.msg{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 50px;
+}
+
+h2{
+    font-size: 50px;
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
 }
 
 #search-bar {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 10%;
+    left: 70%;
     text-align: center;
-    width: 50%; /* Ajustez la largeur du conteneur #search-bar */
+    width: 30%;
 }
 
 #star-img {
     width: 30px;
     height: 30px;
+}
+
+.imdbR{
+    text-align: center;
+}
+
+#star-img, h4 {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Ajoutez un espace entre les colonnes si nécessaire */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px; /* Ajoutez un espace entre les éléments si nécessaire */
+}
+
+#poster{
+    margin-right: 50px;
+    margin-left: 80px;
+    border-radius: 10px;
+}
+
+.details{
+    margin-left: 50px;
+    padding: 5px;
+    border: solid 1px black;
+    background-color: black;
+    width: 15%;
+    border-radius: 10px;
+}
+
+.content {
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
 }
 
 footer {
@@ -111,4 +171,5 @@ footer {
     position: fixed;
     bottom: 0;
     font-size: 15px;
+    text-align: center;
 }
