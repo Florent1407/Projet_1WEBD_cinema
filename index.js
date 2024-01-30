@@ -1,3 +1,17 @@
+//Navbar
+document.addEventListener("DOMContentLoaded", function () {
+  var navbar = document.getElementById("navbar");
+
+  window.addEventListener("scroll", function () {
+    var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    if (scrollPosition > 0) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+});
+
 //Bannière
 document.addEventListener("DOMContentLoaded", function () {
   const slider = document.getElementById("slider");
@@ -22,6 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
     slides[slideIndex].style.display = "block";
   }
 
+  function nextSlide() {
+    showSlides((slideIndex += 1));
+    setTimeout(nextSlide, 6000);
+  }
+
   leftArrow.addEventListener("click", function () {
     showSlides((slideIndex -= 1));
   });
@@ -30,66 +49,63 @@ document.addEventListener("DOMContentLoaded", function () {
     showSlides((slideIndex += 1));
   });
 
-  showSlides(slideIndex);
+  nextSlide();
 });
 
 //Films
 const apiKey = "5a0c7cf2";
 const baseURL = "https://www.omdbapi.com/";
+const moviesContainer = document.getElementById("movies-container");
 
-function getMovies() {
-  const url = `${baseURL}?apikey=${apiKey}&s=Avengers`;
+const movieList = [
+  { title: "Argylle", year: 2024 },
+  { title: "Avatar: The Way of Water", year: 2022 },
+  { title: "Oppenheimer", year: 2023 },
+  { title: "Aquaman", year: 2023 },
+  { title: "Guardians of the Galaxy", year: 2023 },
+  { title: "Gran Turismo", year: 2023 },
+  { title: "KILLERS OF THE FLOWER MOON", year: 2023 },
+  { title: "Godzilla minus one", year: null },
+];
 
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP! Statut: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      displayMovies(data.Search);
-    })
-    .catch((error) => {
-      console.error("Erreur lors de la récupération des films:", error);
-    });
-}
+document.addEventListener("DOMContentLoaded", function () {
+  movieList.forEach((movie) => {
+    const url = `${baseURL}?apikey=${apiKey}&t=${encodeURIComponent(
+      movie.title
+    )}&y=${movie.year}`;
 
-function displayMovies(movies) {
-  const moviesContainer = document.getElementById("movies-container");
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.Response === "True") {
+          const movieData = {
+            title: data.Title,
+            poster: data.Poster,
+          };
 
-  if (movies && movies.length > 0) {
-    // Limiter à 8 films
-    const limitedMovies = movies.slice(0, 8);
-
-    limitedMovies.forEach((movie) => {
-      const movieElement = document.createElement("div");
-      movieElement.classList.add("movie");
-
-      const titleElement = document.createElement("h2");
-      titleElement.textContent = movie.Title;
-      movieElement.appendChild(titleElement);
-
-      const summaryElement = document.createElement("p");
-      summaryElement.textContent = movie.Plot;
-      summaryElement.classList.add("movie-resume");
-      movieElement.appendChild(summaryElement);
-
-      const posterElement = document.createElement("img");
-      posterElement.src = movie.Poster;
-      posterElement.alt = `${movie.Title} Poster`;
-
-      posterElement.addEventListener("click", () => {
-        window.location.href = `movie.html?id=${movie.imdbID}`;
+          displayMovie(movieData);
+        } else {
+          console.error(
+            `Error "${movie.title}" (${movie.year}): Movie not found.`
+          );
+        }
       });
+  });
 
-      movieElement.appendChild(posterElement);
+  function displayMovie(movie) {
+    const movieElement = document.createElement("div");
+    movieElement.classList.add("movie");
 
-      moviesContainer.appendChild(movieElement);
-    });
-  } else {
-    moviesContainer.innerHTML = "<p>No movies found</p>";
+    const posterElement = document.createElement("img");
+    posterElement.src = movie.poster;
+    posterElement.alt = `${movie.title} Poster`;
+
+    const titleElement = document.createElement("h2");
+    titleElement.textContent = movie.title;
+
+    movieElement.appendChild(posterElement);
+    movieElement.appendChild(titleElement);
+
+    moviesContainer.appendChild(movieElement);
   }
-}
-
-getMovies();
+});

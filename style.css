@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
-    font-family: 'Poppins', sans-serif;
-
+    font-family: "Work Sans", sans-serif;
     color: azure;
 }
 
 body {
-    background: linear-gradient( #040516, rgb(7, 44, 82), #040516, #16406a, #040516);
+    background: linear-gradient( #040516,#010118e6, #040516, #0a0a35e6,#000004);
     margin: 0;
     padding: 0;
     text-align: center;
@@ -16,8 +15,7 @@ body {
 
 /* HAUT DE PAGE */
 #navbar {
-    background-color: #040516;
-    position: sticky;
+    position: absolute;
     justify-content: start;
     top: 0;
     left: 0;
@@ -26,55 +24,63 @@ body {
     text-align: center;
 }
 
-
-.banner img {
-    height: 350px;
-    justify-content: end;
+#navbar.scrolled {
+    background-color: #01010de6; 
+    transition: background-color 0.3s ease; 
+    position: fixed;
+    width: 100%;
 }
 
 
 #link-navbar ul {
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
     align-items: center;
     padding: 10px;
     margin: 0;
 }
 
 .link #logo {
-    width: 50px;
-}
-.link #login-account{
-    width: 30px;
-}
-
-#btn-search {
-    margin-top: 3px;
-    margin-left: 5px;
-    width: 28px;
-    height: 28px;
+    width: 80px;
+    border-radius: 50px;
     cursor: pointer;
 }
 
-.banner img.img-cover {
+.link #account {
+    width: 30px;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+
+.banner .img-cover {
     max-width: 100%;
     height: auto;
 }
-
 
 #banner {
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    position: relative;
 }
 
 #slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+    position: relative;
 }
+
+#banner:hover .arrow {
+    opacity: 1;
+}
+
 
 .slide {
     position: relative;
@@ -83,17 +89,19 @@ body {
 .img-cover {
     max-width: 100%;
     height: auto;
-    filter: blur(3px);
+    filter: brightness(0.5) blur(5px);
+    transition: transform 0.5s ease;
 }
 
 .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 24px;
-    color: white;
+    font-size: 26px;
+    color: #f1f1f1;
     cursor: pointer;
     user-select: none;
+    opacity: 0;
 }
 
 .left-arrow {
@@ -112,45 +120,113 @@ body {
     top: 50%; 
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: #ffffff;
     z-index: 1;
     width:80%;
 }
 
 .slide-details h4 {
+    padding-top: 70px;
     margin: 0;
     font-size: 2em;
 }
 
 .slide-details p {
+    padding-left: 50px;
+    padding-right: 50px;
     margin: 10px 0;
 }
 
 .details-img {
-    width: 300px;
+    width: 350px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
 }
 
+.details-img:hover {
+    transform: scale(1.1); 
+}
+
+
+/*Films*/
+#title {
+    margin-top: 80px;
+}
 #movies-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
   }
-  
-  .movie img {
+
+.movie img {
+    padding: 10px;
     max-width: 100%;
     height: auto;
+    border-radius: 15px;
+    cursor: pointer;
   }
 
-
-/*Films*/
+.movie img:hover {
+    filter: brightness(1.2); 
+}
+.movie h2{
+    margin: 10px;
+}
 .movie {
     position: relative;
-    width: 300px; 
+    width: 320px; 
     margin: 10px;
     text-align: center;
+    border-radius: 15px;
     overflow: hidden;
+    background-color: #eaf6f60e
   }
 
+#load-more {
+    background-color: #ffffff;
+    border-radius: 10px;
+    color: #000000;
+    padding: 8px;
+    margin: 20px;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
+/*BAS DE PAGE*/
 footer {
-    background-color: #040516;
+    display: flex;
+    flex-direction: column;
+    background-color: #000004;
+}
+
+#information {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#link-footer ul{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+footer .link {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+}
+
+#logo-footer img{
+    padding-top: 30px;
+    display: flex;
+    width: 60px;
+    cursor: pointer;
+}
+
+footer #mentions{
+    font-size: 15px;
+    color: #f0ffffc1;
+    padding-bottom: 20px;
 }
