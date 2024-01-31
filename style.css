@@ -81,10 +81,21 @@ a:hover{
     opacity: 1;
 }
 
-
 .slide {
     position: relative;
+    opacity: 0;
+    animation: fadeIn 0.7s ease-in-out forwards; 
 }
+/*Décrit comment slide agit le long de l'animation*/
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 
 .img-cover {
     max-width: 100%;
@@ -155,8 +166,28 @@ a:hover{
 #movies-container {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movies-row {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-  }
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.movie {
+    position: relative;
+    width: 320px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #eaf6f60e;
+}
+
 
 .movie img {
     padding: 10px;
@@ -181,15 +212,27 @@ a:hover{
     overflow: hidden;
     background-color: #eaf6f60e
   }
+  
+#movies-row-3, #movies-row-4{
+    display: none;
+}
 
-#load-more {
-    background-color: #ffffff;
+#load-more, #load-less {
+    transition: background-color 0.3s ease;
+    background-color: #e6e4e4;
     border-radius: 10px;
-    color: #000000;
+    color: #151515;
     padding: 8px;
     margin: 20px;
     margin-bottom: 50px;
     cursor: pointer;
+    font-size: 14px ;
+}
+
+#load-more:hover,
+#load-less:hover {
+    background-color: #ffffff;
+    color: #000000;
 }
 
 /*BAS DE PAGE*/
@@ -230,3 +273,22 @@ footer #mentions{
     color: #f0ffffc1;
     padding-bottom: 20px;
 }
+
+
+@media only screen and (max-width: 850px) {
+.details-img {
+    margin-top: 50px;
+    width: 90px;
+    height: 90px;
+}
+  
+.slide-details h4 {
+    font-size: 14px;
+}
+  
+.slide-details p {
+    font-size: 10px;
+}
+
+}
+  

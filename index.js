@@ -1,7 +1,6 @@
-//Navbar
 document.addEventListener("DOMContentLoaded", function () {
+  // Navbar
   var navbar = document.getElementById("navbar");
-
   window.addEventListener("scroll", function () {
     var scrollPosition = window.scrollY || document.documentElement.scrollTop;
     if (scrollPosition > 0) {
@@ -10,10 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
       navbar.classList.remove("scrolled");
     }
   });
-});
 
-//Bannière
-document.addEventListener("DOMContentLoaded", function () {
+  // Bannière
   const slider = document.getElementById("slider");
   const leftArrow = document.querySelector(".left-arrow");
   const rightArrow = document.querySelector(".right-arrow");
@@ -50,26 +47,33 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   nextSlide();
-});
 
-//Films
-const apiKey = "5a0c7cf2";
-const baseURL = "https://www.omdbapi.com/";
-const moviesContainer = document.getElementById("movies-container");
+  // Films
+  const apiKey = "5a0c7cf2";
+  const baseURL = "https://www.omdbapi.com/";
 
-const movieList = [
-  { title: "Argylle", year: 2024 },
-  { title: "Avatar: The Way of Water", year: 2022 },
-  { title: "Oppenheimer", year: 2023 },
-  { title: "Aquaman", year: 2023 },
-  { title: "Guardians of the Galaxy", year: 2023 },
-  { title: "Gran Turismo", year: 2023 },
-  { title: "KILLERS OF THE FLOWER MOON", year: 2023 },
-  { title: "Godzilla minus one", year: null },
-];
+  let totalMoviesDisplayed = 0;
 
-document.addEventListener("DOMContentLoaded", function () {
-  movieList.forEach((movie) => {
+  const movieList = [
+    { title: "Argylle", year: 2024 },
+    { title: "Avatar: The Way of Water", year: 2022 },
+    { title: "Oppenheimer", year: 2023 },
+    { title: "Aquaman", year: 2023 },
+    { title: "Guardians of the Galaxy", year: 2023 },
+    { title: "Gran Turismo", year: 2023 },
+    { title: "KILLERS OF THE FLOWER MOON", year: 2023 },
+    { title: "Godzilla minus one", year: null },
+    { title: "Mars express", year: 2023 },
+    { title: "Les SEGPA au ski", year: 2023 },
+    { title: "Anyone but You", year: 2023 },
+    { title: "May December", year: 2023 },
+    { title: "Napoléon", year: 2023 },
+    { title: "The Iron Claw", year: 2023 },
+    { title: "Légua", year: 2023 },
+    { title: "Wish", year: 2023 },
+  ];
+
+  movieList.forEach((movie, index) => {
     const url = `${baseURL}?apikey=${apiKey}&t=${encodeURIComponent(
       movie.title
     )}&y=${movie.year}`;
@@ -83,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
             poster: data.Poster,
           };
 
-          displayMovie(movieData);
+          displayMovie(movieData, index);
         } else {
           console.error(
             `Error "${movie.title}" (${movie.year}): Movie not found.`
@@ -92,20 +96,50 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 
-  function displayMovie(movie) {
-    const movieElement = document.createElement("div");
-    movieElement.classList.add("movie");
+  function displayMovie(movie, index) {
+    if (index >= totalMoviesDisplayed) {
+      const movieElement = document.createElement("div");
+      movieElement.classList.add("movie");
 
-    const posterElement = document.createElement("img");
-    posterElement.src = movie.poster;
-    posterElement.alt = `${movie.title} Poster`;
+      const posterElement = document.createElement("img");
+      posterElement.src = movie.poster;
+      posterElement.alt = `${movie.title} Poster`;
 
-    const titleElement = document.createElement("h2");
-    titleElement.textContent = movie.title;
+      const titleElement = document.createElement("h2");
+      titleElement.textContent = movie.title;
 
-    movieElement.appendChild(posterElement);
-    movieElement.appendChild(titleElement);
+      movieElement.appendChild(posterElement);
+      movieElement.appendChild(titleElement);
 
-    moviesContainer.appendChild(movieElement);
+      movieElement.addEventListener("click", function () {
+        window.location.href = `movie.html?title=${encodeURIComponent(
+          movie.title
+        )}`;
+      });
+
+      //Bouton +/- films
+      document
+        .getElementById("load-more")
+        .addEventListener("click", function () {
+          document.getElementById("movies-row-3").style.display = "flex";
+          document.getElementById("movies-row-4").style.display = "flex";
+          document.getElementById("load-more").style.display = "none";
+          document.getElementById("load-less").style.display = "flex";
+        });
+
+      document
+        .getElementById("load-less")
+        .addEventListener("click", function () {
+          document.getElementById("movies-row-3").style.display = "none";
+          document.getElementById("movies-row-4").style.display = "none";
+          document.getElementById("load-less").style.display = "none";
+          document.getElementById("load-more").style.display = "flex";
+        });
+
+      // Distribue les films
+      const currentRow = Math.floor(index / 4) + 1;
+      const newRow = document.getElementById(`movies-row-${currentRow}`);
+      newRow.appendChild(movieElement);
+    }
   }
 });
