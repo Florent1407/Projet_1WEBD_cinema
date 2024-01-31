@@ -96,7 +96,6 @@ a:hover{
     }
 }
 
-
 .img-cover {
     max-width: 100%;
     height: auto;
@@ -122,7 +121,6 @@ a:hover{
 .right-arrow {
     right: 10px;
 }
-
 
 .slide-details {
     position: absolute;
@@ -188,7 +186,35 @@ a:hover{
     background-color: #eaf6f60e;
 }
 
-
+.movie p {
+    display: none;
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.741);
+    color: #ffffff;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
+}
+  
+@keyframes slideIn {
+    to {
+      top: 20%; 
+      opacity: 1;
+    }
+}
+  
+.movie:hover p {
+    display: block;
+    animation: slideIn 0.5s forwards; 
+    cursor: pointer;
+}
+  
 .movie img {
     padding: 10px;
     max-width: 100%;
@@ -197,12 +223,10 @@ a:hover{
     cursor: pointer;
   }
 
-.movie img:hover {
-    filter: brightness(1.2); 
-}
 .movie h2{
     margin: 10px;
 }
+
 .movie {
     position: relative;
     width: 320px; 
@@ -217,8 +241,14 @@ a:hover{
     display: none;
 }
 
-#load-more, #load-less {
-    transition: background-color 0.3s ease;
+#load-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#load-more,
+#load-less {
     background-color: #e6e4e4;
     border-radius: 10px;
     color: #151515;
@@ -226,7 +256,7 @@ a:hover{
     margin: 20px;
     margin-bottom: 50px;
     cursor: pointer;
-    font-size: 14px ;
+    font-size: 14px;
 }
 
 #load-more:hover,
@@ -234,6 +264,7 @@ a:hover{
     background-color: #ffffff;
     color: #000000;
 }
+
 
 /*BAS DE PAGE*/
 footer {

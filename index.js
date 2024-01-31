@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const movieData = {
             title: data.Title,
             poster: data.Poster,
+            summary: data.Plot,
           };
 
           displayMovie(movieData, index);
@@ -108,8 +109,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const titleElement = document.createElement("h2");
       titleElement.textContent = movie.title;
 
+      const summaryElement = document.createElement("p");
+      summaryElement.textContent = movie.summary;
+
       movieElement.appendChild(posterElement);
       movieElement.appendChild(titleElement);
+      movieElement.appendChild(summaryElement);
 
       movieElement.addEventListener("click", function () {
         window.location.href = `movie.html?title=${encodeURIComponent(
