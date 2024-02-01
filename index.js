@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { title: "KILLERS OF THE FLOWER MOON", year: 2023 },
     { title: "Godzilla minus one", year: null },
     { title: "Mars express", year: 2023 },
-    { title: "Les SEGPA au ski", year: 2023 },
+    { title: "The Super Mario Bros", year: 2023 },
     { title: "Anyone but You", year: 2023 },
     { title: "May December", year: 2023 },
     { title: "Napoléon", year: 2023 },
