@@ -11,20 +11,22 @@
         <div id="link-navbar">
             <ul>
                 <li class="link">
-                    <a href="search.html">
-                        <p>Search</p>
-                    </a>
-                </li>
-                <li class="link">
                     <a href="index.html">
                         <img id="logo" src="img/logo3.png" alt="Image du logo">
                     </a>
                 </li>
-                <li class="link">
-                    <a href="contact.html">
-                        <p>Contact</p>
-                    </a>
-                </li>   
+                <div id="link-right">
+                    <li class="link">
+                        <a id="link-serach" href="search.html">
+                            <p>Search</p>
+                        </a>
+                    </li>
+                    <li class="link">
+                        <a href="contact.html">
+                            <p>Contact</p>
+                        </a>
+                    </li> 
+                </div>  
             </ul>
         </div>
     </nav>
@@ -37,8 +39,9 @@
 
     <section id="result"></section>
     
-    <div class="boutton">
-    <button id="load-more" class="boutonb">Afficher plus</button>
+    <div id="load-container">
+                <button id="load-more">Charger plus de films</button>
+            <button id="load-less" style="display: none;">Charger moins de films</button>
     </div>
 
     <footer>
