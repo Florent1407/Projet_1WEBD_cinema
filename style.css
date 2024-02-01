@@ -5,7 +5,7 @@
 }
 
 body {
-    background: linear-gradient( #040516, #000004);
+    background: linear-gradient( #060823, #04042a);
     margin: 0;
     padding: 0;
     text-align: center;
@@ -96,6 +96,7 @@ body {
     height: auto;
     filter: brightness(0.5) blur(5px);
     transition: transform 0.5s ease;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .arrow {
@@ -164,7 +165,7 @@ body {
 }
 
 .line {
-    border: 1px solid #951313; 
+    border: 1px solid #ffffff; 
     margin-left: 80px; 
     margin-right: 80px; 
     margin-bottom: 50px;
@@ -185,18 +186,22 @@ body {
     margin-bottom: 20px;
 }
 
+#movies-row-3, #movies-row-4{
+    display: none;
+}
+
 .movie {
-    color: #ffffff;
     position: relative;
     width: 320px;
     margin: 10px;
     text-align: center;
     border-radius: 15px;
     overflow: hidden;
-    background-color: #eaf6f60e;
-}
+    background-color: #eaf6f61a;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  }
 
-.movie p {
+.movie .summary {
     display: none;
     position: absolute;
     top: 100%; 
@@ -218,9 +223,22 @@ body {
     }
 }
   
-.movie:hover p {
+.movie:hover .summary{
     display: block;
     animation: slideIn 0.5s forwards; 
+    cursor: pointer;
+}
+  
+.genre {
+    position: absolute;
+    border-radius: 8px;
+    top: 0;
+    right: 15px;
+    padding: 7px;
+    background-color: #e8e6e6f0;
+    color: #000004;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1;
     cursor: pointer;
 }
   
@@ -230,24 +248,10 @@ body {
     height: auto;
     border-radius: 15px;
     cursor: pointer;
-  }
+}
 
 .movie h2{
     margin: 10px;
-}
-
-.movie {
-    position: relative;
-    width: 320px; 
-    margin: 10px;
-    text-align: center;
-    border-radius: 15px;
-    overflow: hidden;
-    background-color: #eaf6f60e
-  }
-  
-#movies-row-3, #movies-row-4{
-    display: none;
 }
 
 #load-container {
@@ -261,6 +265,7 @@ body {
     border: 2px solid #ffffff;
     border-radius: 10px;
     color: #ffffff;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
     padding: 8px;
     margin: 20px;
     margin-bottom: 50px;
@@ -275,7 +280,6 @@ body {
     background-color:#f0ffff;
     color: #000000;
 }
-
 
 
 /*BAS DE PAGE*/

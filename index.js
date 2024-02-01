@@ -55,22 +55,22 @@ document.addEventListener("DOMContentLoaded", function () {
   let totalMoviesDisplayed = 0;
 
   const movieList = [
-    { title: "Argylle", year: 2024 },
-    { title: "Avatar: The Way of Water", year: 2022 },
-    { title: "Oppenheimer", year: 2023 },
-    { title: "Aquaman", year: 2023 },
-    { title: "Guardians of the Galaxy", year: 2023 },
-    { title: "Gran Turismo", year: 2023 },
-    { title: "KILLERS OF THE FLOWER MOON", year: 2023 },
-    { title: "Godzilla minus one", year: null },
-    { title: "Mars express", year: 2023 },
-    { title: "The Super Mario Bros", year: 2023 },
-    { title: "Anyone but You", year: 2023 },
-    { title: "May December", year: 2023 },
-    { title: "Napoléon", year: 2023 },
-    { title: "The Iron Claw", year: 2023 },
-    { title: "Légua", year: 2023 },
-    { title: "Wish", year: 2023 },
+    { title: "Argylle", year: 2024, genre: "Action" },
+    { title: "Avatar: The Way of Water", year: 2022, genre: "Science Fiction" },
+    { title: "Oppenheimer", year: 2023, genre: "Drama" },
+    { title: "Aquaman", year: 2023, genre: "Adventure" },
+    { title: "Guardians of the Galaxy", year: 2023, genre: "Science Fiction" },
+    { title: "Gran Turismo", year: 2023, genre: "Action" },
+    { title: "KILLERS OF THE FLOWER MOON", year: 2023, genre: "Crime" },
+    { title: "Godzilla minus one", year: null, genre: "Science Fiction" },
+    { title: "Mars express", year: 2023, genre: "Science Fiction" },
+    { title: "The Super Mario Bros", year: 2023, genre: "Adventure" },
+    { title: "Anyone but You", year: 2023, genre: "Romance" },
+    { title: "May December", year: 2023, genre: "Drama" },
+    { title: "Napoléon", year: 2023, genre: "Biography" },
+    { title: "The Iron Claw", year: 2023, genre: "Thriller" },
+    { title: "Légua", year: 2023, genre: "Adventure" },
+    { title: "Wish", year: 2023, genre: "Fantasy" },
   ];
 
   movieList.forEach((movie, index) => {
@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
             title: data.Title,
             poster: data.Poster,
             summary: data.Plot,
+            genre: movie.genre,
           };
 
           displayMovie(movieData, index);
@@ -109,11 +110,17 @@ document.addEventListener("DOMContentLoaded", function () {
       const titleElement = document.createElement("h2");
       titleElement.textContent = movie.title;
 
+      const genreElement = document.createElement("p");
+      genreElement.textContent = `${movie.genre}`;
+      genreElement.classList.add("genre");
+
       const summaryElement = document.createElement("p");
       summaryElement.textContent = movie.summary;
+      summaryElement.classList.add("summary");
 
       movieElement.appendChild(posterElement);
       movieElement.appendChild(titleElement);
+      movieElement.appendChild(genreElement);
       movieElement.appendChild(summaryElement);
 
       movieElement.addEventListener("click", function () {
