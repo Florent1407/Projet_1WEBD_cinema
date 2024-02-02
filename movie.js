@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
             genre: data.Genre,
             actors: data.Actors,
             dvdRelease: data.DVD,
+            rating: parseFloat(data.imdbRating) / 2,
           };
 
           displayMovieDetails(movieData);
@@ -74,10 +75,36 @@ const displayMovieDetails = (movie) => {
   dvdReleaseElement.textContent = `DVD Date: ${movie.dvdRelease}`;
   dvdReleaseElement.classList.add("dvd-release");
 
+  const ratingContainer = document.createElement("div");
+  ratingContainer.classList.add("rating");
+
+  for (let i = 1; i <= 5; i++) {
+    const star = document.createElement("i");
+    star.classList.add("rating__star", "far", "fa-star");
+    star.dataset.value = i;
+    ratingContainer.appendChild(star);
+  }
+
+  infoContainer.appendChild(ratingContainer);
+
   posterContainer.appendChild(posterElement);
   infoContainer.appendChild(titleElement);
   infoContainer.appendChild(genreElement);
   infoContainer.appendChild(summaryElement);
   infoContainer.appendChild(actorsElement);
   infoContainer.appendChild(dvdReleaseElement);
+
+  Rating(movie.rating);
+};
+
+const Rating = (rating) => {
+  if (!isNaN(rating)) {
+    const stars = document.querySelectorAll(".rating__star");
+    const roundedRating = Math.round(rating * 2) / 2;
+
+    stars.forEach((star, index) => {
+      const starValue = index + 1;
+      star.classList.toggle("fas", starValue <= roundedRating);
+    });
+  }
 };
