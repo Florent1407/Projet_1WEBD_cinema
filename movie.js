@@ -1,77 +1,83 @@
-const apiKey = "5a0c7cf2";
-const baseURL = "https://www.omdbapi.com/";
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const movieTitle = params.get("t");
 
-let movieNameRef = document.getElementById("movie-name");
-let searchBtn = document.getElementById("button-search");
-let result = document.getElementById("result");
+  if (movieTitle) {
+    const apiKey = "5a0c7cf2";
+    const baseURL = "https://www.omdbapi.com/";
+    const url = `${baseURL}?apikey=${apiKey}&t=${encodeURIComponent(
+      movieTitle
+    )}`;
+    console.log("API URL:", url);
 
-let getMovie = () => {
-  let movieName = movieNameRef.value;
-  let url = `${baseURL}?apikey=${apiKey}&t=${movieName}`;
-  let url2 = `${baseURL}?apikey=${apiKey}&t=${movieName}&plot=full`;
-
-  if (movieName.length <= 0) {
-    result.innerHTML = `<h3 class="msg">Merci d'entrer un nom de film</h3>`;
-  } else {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        if (data.Response == "True") {
-          fetch(url2)
-            .then((response2) => response2.json())
-            .then((data2) => {
-              data.Plot = data2.Plot || data.Plot;
+        console.log("API Response:", data);
+        if (data && data.Response === "True") {
+          const movieData = {
+            title: data.Title,
+            poster: data.Poster,
+            summary: data.Plot,
+            genre: data.Genre,
+            actors: data.Actors,
+            dvdRelease: data.DVD,
+          };
 
-              result.innerHTML = `
-                                <div class="info">
-                                    <div class="imdbR">
-                                        <h2>${data.Title}</h2>
-                                        <div class="rating">
-                                            <img id="star-img" src="img/star.png" class="star">
-                                            <h4>${data.imdbRating}</h4>
-                                        </div>
-                                    </div>
-                                    <div class="grid-container">
-                                        <div id="poster-container">
-                                            <img id="poster" src="${
-                                              data.Poster
-                                            }" class="poster">
-                                        </div>
-                                        <div id="details-container">
-                                            <div id="details">
-                                                <div class="details">
-                                                    <span>${data.Rated}</span>
-                                                    <span>${data.Runtime}</span>
-                                                    <span>${data.Year}</span>
-                                                    <div>${data.Genre.split(
-                                                      ","
-                                                    ).join("<div></div>")}</div>
-                                                </div>
-                                                <div class="content">
-                                                    <h3>Plot : </h3>
-                                                    <p>${data.Plot}</p>
-                                                    <h3>Distribution : </h3>
-                                                    <p>${data.Actors}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            `;
-            })
-            .catch(() => {
-              console.error("Erreur lors de la deuxième requête fetch");
-              result.innerHTML = `<h3 class="msg">Erreur lors de la deuxième requête fetch</h3>`;
-            });
+          displayMovieDetails(movieData);
         } else {
-          result.innerHTML = `<h3 class="msg">${data.Error}</h3>`;
+          console.error(`Error "${movieTitle}": Movie not found`);
         }
       })
-      .catch(() => {
-        result.innerHTML = `<h3 class="msg">Erreur détectée</h3>`;
+      .catch((error) => {
+        console.error("API Request Error:", error);
       });
+  } else {
+    console.error("Error: Movie title not provided in the URL.");
   }
-};
+});
 
-searchBtn.addEventListener("click", getMovie);
-window.addEventListener("load", getMovie);
+const displayMovieDetails = (movie) => {
+  const posterContainer = document.getElementById("movie-poster");
+  const infoContainer = document.getElementById("movie-info");
+
+  const posterElement = document.createElement("img");
+  posterElement.src = movie.poster;
+  posterElement.alt = `${movie.title} Poster`;
+  posterElement.classList.add("movie-poster");
+
+  const titleElement = document.createElement("h1");
+  titleElement.textContent = movie.title;
+  titleElement.classList.add("movie-title");
+
+  const genreElement = document.createElement("p");
+  genreElement.classList.add("movie-genre");
+
+  movie.genre.split(", ").forEach((genre) => {
+    const genreSpan = document.createElement("span");
+    genreSpan.textContent = genre;
+    genreSpan.classList.add("genre-tag");
+    genreElement.appendChild(genreSpan);
+  });
+
+  const summaryElement = document.createElement("p");
+  summaryElement.textContent = movie.summary;
+  summaryElement.classList.add("movie-summary");
+
+  const actorsElement = document.createElement("p");
+  actorsElement.textContent = `Cast: ${
+    Array.isArray(movie.actors) ? movie.actors.join(", ") : movie.actors
+  }`;
+  actorsElement.classList.add("movie-actors");
+
+  const dvdReleaseElement = document.createElement("p");
+  dvdReleaseElement.textContent = `DVD Date: ${movie.dvdRelease}`;
+  dvdReleaseElement.classList.add("dvd-release");
+
+  posterContainer.appendChild(posterElement);
+  infoContainer.appendChild(titleElement);
+  infoContainer.appendChild(genreElement);
+  infoContainer.appendChild(summaryElement);
+  infoContainer.appendChild(actorsElement);
+  infoContainer.appendChild(dvdReleaseElement);
+};
