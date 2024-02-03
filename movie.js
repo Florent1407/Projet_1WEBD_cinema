@@ -8,17 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const url = `${baseURL}?apikey=${apiKey}&t=${encodeURIComponent(
       movieTitle
     )}`;
-    console.log("API URL:", url);
+    const url2 = `${baseURL}?apikey=${apiKey}&t=${encodeURIComponent(
+      movieTitle
+    )}&plot=full`;
+    console.log("URL de l'API :", url);
 
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log("API Response:", data);
+        console.log("Réponse de l'API :", data);
         if (data && data.Response === "True") {
           const movieData = {
             title: data.Title,
             poster: data.Poster,
-            summary: data.Plot,
             genre: data.Genre,
             actors: data.Actors,
             dvdRelease: data.DVD,
@@ -26,15 +28,30 @@ document.addEventListener("DOMContentLoaded", () => {
           };
 
           displayMovieDetails(movieData);
+
+          fetch(url2)
+            .then((response) => response.json())
+            .then((data2) => {
+              console.log("Réponse de l'API (Deuxième URL) :", data2);
+                const movieData2 = {
+                  summary: data2.Plot,
+                }
+
+              const summaryElement = document.querySelector(".movie-summary");
+              summaryElement.textContent = movieData2.summary;
+            })
+            .catch((error2) => {
+              console.error("Erreur de la requête API (Deuxième URL) :", error2);
+            });
         } else {
-          console.error(`Error "${movieTitle}": Movie not found`);
+          console.error(`Erreur "${movieTitle}" : Film non trouvé`);
         }
       })
       .catch((error) => {
-        console.error("API Request Error:", error);
+        console.error("Erreur de la requête API :", error);
       });
   } else {
-    console.error("Error: Movie title not provided in the URL.");
+    console.error("Erreur : Aucun titre de film fourni dans l'URL.");
   }
 });
 
@@ -66,13 +83,13 @@ const displayMovieDetails = (movie) => {
   summaryElement.classList.add("movie-summary");
 
   const actorsElement = document.createElement("p");
-  actorsElement.textContent = `Cast: ${
+  actorsElement.textContent = `Cast : ${
     Array.isArray(movie.actors) ? movie.actors.join(", ") : movie.actors
   }`;
   actorsElement.classList.add("movie-actors");
 
   const dvdReleaseElement = document.createElement("p");
-  dvdReleaseElement.textContent = `DVD Date: ${movie.dvdRelease}`;
+  dvdReleaseElement.textContent = `DVD Date : ${movie.dvdRelease}`;
   dvdReleaseElement.classList.add("dvd-release");
 
   const ratingContainer = document.createElement("div");
