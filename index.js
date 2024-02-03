@@ -86,54 +86,52 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 
-  function displayMovie(movie, index) {
-    if (index >= totalMoviesDisplayed) {
-      const movieElement = document.createElement("div");
-      movieElement.classList.add("movie");
+  const displayMovie = (movie, index) => {
+    const movieContainer = document.createElement("div");
+    movieContainer.classList.add("movie");
 
-      const posterElement = document.createElement("img");
-      posterElement.src = movie.poster;
-      posterElement.alt = `${movie.title} Poster`;
+    const posterElement = document.createElement("img");
+    posterElement.src = movie.poster;
+    posterElement.alt = `${movie.title} Poster`;
 
-      const titleElement = document.createElement("h2");
-      titleElement.textContent = movie.title;
+    const titleElement = document.createElement("h2");
+    titleElement.textContent = movie.title;
 
-      const genreElement = document.createElement("p");
-      genreElement.textContent = `${movie.genre}`;
-      genreElement.classList.add("genre");
+    const genreElement = document.createElement("p");
+    genreElement.textContent = `${movie.genre}`;
+    genreElement.classList.add("genre");
 
-      const summaryElement = document.createElement("p");
-      summaryElement.textContent = movie.summary;
-      summaryElement.classList.add("summary");
+    const summaryElement = document.createElement("p");
+    summaryElement.textContent = movie.summary;
+    summaryElement.classList.add("summary");
 
-      movieElement.appendChild(posterElement);
-      movieElement.appendChild(titleElement);
-      movieElement.appendChild(genreElement);
-      movieElement.appendChild(summaryElement);
+    movieContainer.appendChild(posterElement);
+    movieContainer.appendChild(titleElement);
+    movieContainer.appendChild(genreElement);
+    movieContainer.appendChild(summaryElement);
 
-      movieElement.addEventListener("click", () => {
-        window.location.href = `movie.html?t=${encodeURIComponent(
-          movie.title
-        )}`;
-      });
+    movieContainer.addEventListener("click", () => {
+      window.location.href = `movie.html?t=${encodeURIComponent(movie.title)}`;
+    });
 
-      document.getElementById("load-more").addEventListener("click", () => {
-        document.getElementById("movies-row-3").style.display = "flex";
-        document.getElementById("movies-row-4").style.display = "flex";
-        document.getElementById("load-more").style.display = "none";
-        document.getElementById("load-less").style.display = "flex";
-      });
+    document.getElementById("load-more").addEventListener("click", () => {
+      document.getElementById("movies-row-3").style.display = "flex";
+      document.getElementById("movies-row-4").style.display = "flex";
+      document.getElementById("load-more").style.display = "none";
+      document.getElementById("load-less").style.display = "flex";
+    });
 
-      document.getElementById("load-less").addEventListener("click", () => {
-        document.getElementById("movies-row-3").style.display = "none";
-        document.getElementById("movies-row-4").style.display = "none";
-        document.getElementById("load-less").style.display = "none";
-        document.getElementById("load-more").style.display = "flex";
-      });
+    document.getElementById("load-less").addEventListener("click", () => {
+      document.getElementById("movies-row-3").style.display = "none";
+      document.getElementById("movies-row-4").style.display = "none";
+      document.getElementById("load-less").style.display = "none";
+      document.getElementById("load-more").style.display = "flex";
+    });
 
-      const currentRow = Math.floor(index / 4) + 1;
-      const newRow = document.getElementById(`movies-row-${currentRow}`);
-      newRow.appendChild(movieElement);
-    }
-  }
+    const currentRow = Math.floor(index / 4) + 1;
+    const newRow = document.getElementById(`movies-row-${currentRow}`);
+    newRow.appendChild(movieContainer);
+
+    totalMoviesDisplayed += 1;
+  };
 });

@@ -214,7 +214,7 @@ body {
     overflow: hidden;
     background-color: #eaf6f61a;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-  }
+}
 
 .movie .summary {
     display: none;
