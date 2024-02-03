@@ -1,66 +1,107 @@
-const apiKey = "5a0c7cf2";
-const baseURL = "https://www.omdbapi.com/";
+document.addEventListener("DOMContentLoaded", () => {
+  const apiKey = "5a0c7cf2";
+  const baseURL = "https://www.omdbapi.com/";
 
-let movieNameRef = document.getElementById("movie-name");
-let resultContainer = document.getElementById("result");
-let loadMoreBtn = document.getElementById("load-more");
-let searchBtn = document.getElementById("button-search");
+  let movieNameRef = document.getElementById("movie-input");
+  let resultContainer = document.getElementById("result");
+  let searchBtn = document.getElementById("button-search");
+  let previousBtn = document.getElementById("previous-btn");
+  let nextBtn = document.getElementById("next-btn");
 
-let currentPage = 1;
-const resultsPerPage = 8;
-let totalResults = 0;
+  let currentPage = 1;
+  const resultsPerPage = 8;
+  let totalResults = 0;
 
-let getMovie = () => {
-    let movieName = movieNameRef.value;
+  let getMovie = () => {
+    let movieName = movieNameRef.value.trim();
+
+    if (movieName.length === 0) {
+      displayMessage("Merci d'entrer un nom de film jeune padawan");
+      return;
+    }
+
     let url = `${baseURL}?s=${movieName}&page=${currentPage}&apikey=${apiKey}`;
 
-    if (movieName.length <= 0) {
-        resultContainer.innerHTML = `<h3 class="msg">Merci d'entrer un nom de film jeune padawan</h3>`;
-        loadMoreBtn.style.display = "none";
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => movieData(data))
+      .catch((error) => {
+        displayMessage("Erreur détectée");
+      });
+  };
+
+  let displayMessage = (message) => {
+    resultContainer.innerHTML = `<h3 class="msg">${message}</h3>`;
+    updateButtons();
+  };
+
+  let movieData = (data) => {
+    if (data.Response === "True") {
+      totalResults = parseInt(data.totalResults);
+      resultContainer.innerHTML = "";
+
+      const moviesToDisplay = data.Search.slice(0, resultsPerPage);
+
+      moviesToDisplay.forEach((movie) => {
+        if (movie.Poster !== "N/A") {
+          let movieLink = document.createElement("a");
+          movieLink.setAttribute(
+            "href",
+            `movie.html?t=${encodeURIComponent(movie.Title)}`
+          );
+          movieLink.classList.add("info");
+
+          let movieDiv = document.createElement("div");
+          movieDiv.innerHTML = `
+              <div id="details">
+                <img src=${movie.Poster} class="poster">
+                <h2>${movie.Title}</h2>
+                <p>Date de sortie: ${movie.Year}</p>
+              </div>`;
+
+          movieLink.appendChild(movieDiv);
+          resultContainer.appendChild(movieLink);
+        }
+      });
+
+      updateButtons();
     } else {
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.Response == "True") {
-                    totalResults = parseInt(data.totalResults);
-                    resultContainer.innerHTML = ""; // Efface le contenu précédent
-
-                    const moviesToDisplay = data.Search.slice(0, resultsPerPage);
-
-                    moviesToDisplay.forEach((movie) => {
-                        if (movie.Poster !== "N/A") {
-                            let movieDiv = document.createElement("div");
-                            movieDiv.classList.add("info");
-                            movieDiv.innerHTML = `
-                                <div id="details">
-                                    <img src=${movie.Poster} class="poster">
-                                    <h2>${movie.Title}</h2>
-                                    <p>Date de sortie: ${movie.Year}</p>
-                                </div>`;
-                            resultContainer.appendChild(movieDiv);
-                        }
-                    });
-
-                    loadMoreBtn.style.display = totalResults > resultsPerPage ? "block" : "none";
-                } else {
-                    resultContainer.innerHTML = `<h3 class="msg">${data.Error}</h3>`;
-                    loadMoreBtn.style.display = "none";
-                }
-            })
-            .catch(() => {
-                resultContainer.innerHTML = `<h3 class="msg">Erreur détectée</h3>`;
-                loadMoreBtn.style.display = "none";
-            });
+      displayMessage(data.Error);
     }
-};
+  };
 
-searchBtn.addEventListener("click", getMovie);
+  let updateButtons = () => {
+    previousBtn.disabled = currentPage <= 1;
+    nextBtn.disabled =
+      currentPage * resultsPerPage >= totalResults || totalResults === 0;
+  };
 
-window.addEventListener("load", getMovie);
+  searchBtn.addEventListener("click", () => {
+    currentPage = 1;
+    getMovie();
+  });
 
-movieNameRef.addEventListener("keydown", (event) => {
+  previousBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      getMovie();
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentPage * resultsPerPage < totalResults) {
+      currentPage++;
+      getMovie();
+    }
+  });
+
+  window.addEventListener("load", getMovie);
+
+  movieNameRef.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
-        event.preventDefault();
-        getMovie();
+      event.preventDefault();
+      currentPage = 1;
+      getMovie();
     }
+  });
 });

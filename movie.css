@@ -194,20 +194,5 @@ footer #mentions{
 #link-navbar ul {
     padding: 0;
 }
-
-.details-img {
-    margin-top: 50px;
-    width: 90px;
-    height: 90px;
-}
-  
-.slide-details h4 {
-    font-size: 14px;
-}
-  
-.slide-details p {
-    font-size: 10px;
-}
-
 }
   

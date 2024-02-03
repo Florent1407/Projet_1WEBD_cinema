@@ -4,80 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="search.css">
-    <title>Recherche</title>
+    <title>Search</title>
 </head>
-<body>
-    <!--HAUT DE PAGE-->
-    <header>
-        <nav id="navbar">
-            <div id="link-logo">
-                <li class="link">
-                    <a href="index.html">
-                        <img id="logo" src="img/logo-nav.png" alt="Image du logo">
-                    </a>
-                </li>
-            </div>
-            <div id="link-navbar">
-                <ul>
-                    <li class="link">
-                        <a href="search.html">
-                            <p>Search</p>
-                        </a>
-                    </li>
-                    
-                    <li class="link">
-                        <a href="contact.html">
-                            <p>Contact</p>
-                        </a>
-                    </li>   
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <div id="search-bar">
-        <div id="search-container">
-            <input type="text" id="movie-name" placeholder="Rechercher un film...">
-            <button id="button-search">Rechercher</button>
-        </div>
-    </div>
-
-    <section id="result"></section>
-    
-    <div id="load-container">
-                <button id="load-more">Charger plus de films</button>
-            <button id="load-less" style="display: none;">Charger moins de films</button>
-    </div>
-
-    <footer>
-        <div id="information">
-            <div id="logo-footer">
-                <a href="index.html">
-                    <img src="img/logo3.png" alt="Image du logo">
-                </a>
-            </div>
-            <div id="link-footer">
-                <ul>
+    <body>
+        <!--HAUT DE PAGE-->
+        <header>
+            <nav id="navbar">
+                <div id="link-logo">
                     <li class="link">
                         <a href="index.html">
-                            <p>Home</p>
+                            <img id="logo" src="img/logo-nav.png" alt="Image du logo">
                         </a>
                     </li>
-                    <li class="link">
-                        <a href="search.html">
-                            <p>Search</p>
-                        </a>
-                    </li>
-                    <li class="link">
-                        <a href="contact.html">
-                            <p>Contact</p>
-                        </a>
-                    </li>   
-                </ul>
+                </div>
+                <div id="link-navbar">
+                    <ul>
+                        <li class="link">
+                            <a href="search.html">
+                                <p>Search</p>
+                            </a>
+                        </li>
+                        
+                        <li class="link">
+                            <a href="contact.html">
+                                <p>Contact</p>
+                            </a>
+                        </li>   
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div id="search-bar">
+                <div id="search-container">
+                    <input type="text" id="movie-input" placeholder="Rechercher un film...">
+                    <button id="button-search">Rechercher</button>
+                </div>
             </div>
-        </div>
-        <p id="mentions">&copy; 2024 CGV - Mentions légales - Made by CF's Industries</p>
-    </footer>
-
-    <script src="search.js"></script>
-</body>
+            <section id="result"></section>
+            <div id="pagination">
+                <button id="previous-btn">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </main>
+        <footer>
+            <div id="information">
+                <div id="logo-footer">
+                    <a href="index.html">
+                        <img src="img/logo-footer.png" alt="Image du logo">
+                    </a>
+                </div>
+                <div id="link-footer">
+                    <ul>
+                        <li class="link">
+                            <a href="index.html">
+                                <p>Home</p>
+                            </a>
+                        </li>
+                        <li class="link">
+                            <a href="search.html">
+                                <p>Search</p>
+                            </a>
+                        </li>
+                        <li class="link">
+                            <a href="contact.html">
+                                <p>Contact</p>
+                            </a>
+                        </li>   
+                    </ul>
+                </div>
+            </div>
+            <p id="mentions">&copy; 2024 CGV - Mentions légales - Made by CF's Industries</p>
+        </footer>
+        <script src="search.js"></script>
+    </body>
 </html>
