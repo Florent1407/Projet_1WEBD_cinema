@@ -9,7 +9,7 @@ body {
     padding: 0;
     text-align: center;
     color: #ffffff;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)), url('img/background.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)), url('../img/background.jpg') center/cover no-repeat;
 }
 
 

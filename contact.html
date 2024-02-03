@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/style/contact.css">
+        <title>Contact</title>
+    </head>
+<body>
+    <!--HAUT DE PAGE-->
+    <header>
+        <nav id="navbar">
+            <div id="link-logo">
+                <li class="link">
+                    <a href="index.html">
+                        <img id="logo" src="assets/img/logo-nav.png" alt="Image du logo">
+                    </a>
+                </li>
+            </div>
+            <div id="link-navbar">
+                <ul>
+                    <li class="link">
+                        <a href="search.html">
+                            <p>Search</p>
+                        </a>
+                    </li>
+                    
+                    <li class="link">
+                        <a href="contact.html">
+                            <p>Contact</p>
+                        </a>
+                    </li>   
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- CONTACT -->
+    <main>
+        <section id="contact">
+            <h2>Questions ou demandes particulières ?</h2>
+            <p>Conctactez-nous</p>
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input class=input-contact type="hidden" name="apikey" value="cf2887ee-96ac-4ee2-a860-457b40686e48">
+                
+                <label for="nom">Nom :</label>
+                <input class=input-contact type="text" id="nom" name="nom" required>
+                <br>
+
+                <label for="email">E-mail :</label>
+                <input class=input-contact type="email" id="email" name="email" required>
+                <br>
+                
+                <label for="telephone">Téléphone :</label>
+                <input class=input-contact type="number" id="phone" name="telephone" required>
+                <br>
+                
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" required></textarea>
+                <br>
+                
+                <label>
+                    <input id="validation" type="checkbox" name="confirmation" value="accepte" required>
+                    J'accepte d'être recontacté
+                </label>
+                <br>
+
+                <button id=button-contact type="submit"> Envoyer </button>
+            </form>
+            <div id="message"> 
+                <p>En soumettant ce formulaire, je reconnais avoir lu et accepté la politique de confidentialité</p>
+                <p>Vos données renseignées ne seront utilisées que pour vous contacter dans le cadre de la demande que vous nous adressez.</p>
+            </div>
+        </section>
+        <!-- Geolocalisation -->
+        <div id="map">
+            <div>
+                <h2>Curieux de savoir où nous opérons ?</h2>
+                <p>Notre Cinéma est situé au 958 Rue d'Orchies, 59310 Landas</p>
+            </div>
+            <div id="media">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.115586074958!2d3.2827327771113985!3d50.476191871597145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2dcafa3b7d933%3A0xa1e1bf6b3a15fc6b!2s958%20Rue%20d&#39;Orchies%2C%2059310%20Landas!5e0!3m2!1sfr!2sfr!4v1706727515022!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </main>
+    <!-- BAS DE PAGE -->
+    <footer>
+        <div id="information">
+            <div id="logo-footer">
+                <a href="index.html">
+                    <img src="assets/img/logo-footer.png" alt="Image du logo">
+                </a>
+            </div>
+            <div id="link-footer">
+                <ul>
+                    <li class="link">
+                        <a href="index.html">
+                            <p>Home</p>
+                        </a>
+                    </li>
+                    <li class="link">
+                        <a href="search.html">
+                            <p>Search</p>
+                        </a>
+                    </li>
+                    <li class="link">
+                        <a href="contact.html">
+                            <p>Contact</p>
+                        </a>
+                    </li>   
+                </ul>
+            </div>
+        </div>
+        <p id="mentions">&copy; 2024 CGV - Mentions légales - Made by CF's Industries</p>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>
