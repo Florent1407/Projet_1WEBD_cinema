@@ -5,11 +5,11 @@
 }
 
 body {
+    background:#050524;
     margin: 0;
     padding: 0;
     text-align: center;
-    color: #ffffff;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1)), url('../img/background.jpg') center/cover no-repeat;
+    color: #ffffff;;
 }
 
 
@@ -67,11 +67,13 @@ body {
 main{
     display: flex;
     flex-wrap: wrap;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 #contact {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 #contact form {
@@ -96,23 +98,24 @@ main{
 
 /* Bouton envoyer*/
 #contact button#button-contact {
-    background-color: rgb(86, 163, 166);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 8px;
-    width: 200px;
-    height: 45px;
-    transition: 0.3s;
-    font-family: 'Space Mono', monospace;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 15px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    color: #ffffff;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    padding: 8px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin: 20px;
+    margin-bottom: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    background: none; 
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #contact button#button-contact:hover {
-    background-color: rgb(25, 100, 126);
-    box-shadow: 0 0 0 5px rgb(183, 208, 217);
-    color: rgb(0, 0, 0);
+    background-color:#f0ffff;
+    color: #000000;
     cursor: pointer;
 }
 
@@ -124,15 +127,15 @@ label input#validation[type="checkbox"] {
     width: auto;
 }
 
-/* Message dessous formulaire */
 #message{
-    text-align: start;
+    text-align: center;
     font-size: 12px;
 }
 
 /* MAP */
-#map {
-    margin: 50px;
+#map iframe {
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 #iframe-map {
@@ -142,17 +145,22 @@ label input#validation[type="checkbox"] {
 
 h2, p {
     text-align: center;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 #media {
     text-align: center;
 }
 
+
 /*BAS DE PAGE*/
 footer {
+    margin-top: auto;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #000004;
+    background-color: #000004db;
 }
 
 #information {
@@ -164,8 +172,16 @@ footer {
 #link-footer ul{
     display: flex;
     flex-wrap: wrap;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
+}
+
+#link-footer a{
+    text-decoration: none;
+    color: #ffffff;
+}
+#link-footer a:hover{
+    text-decoration:underline;
 }
 
 footer .link {
@@ -183,6 +199,24 @@ footer .link {
 
 footer #mentions{
     font-size: 15px;
-    color: #f0ffffc1;
+    color: #eae9e9c1;
     padding-bottom: 20px;
+}
+
+
+@media only screen and (max-width: 850px) {
+
+#navbar {
+    font-size: 12px;
+    padding: 0px;
+}
+
+#link-logo #logo {
+    padding-left: 0px;
+    width: 100px;
+}
+
+#link-navbar ul {
+    padding: 0;
+}
 }

@@ -64,6 +64,11 @@ body {
 }
 
 /*Film détails*/
+main{
+    padding-top: 50px;
+    min-height: 600px;
+}
+
 #movie-details-container {
     display: flex;
     padding: 20px;
@@ -155,6 +160,7 @@ footer {
     text-decoration: none;
     color: #ffffff;
 }
+
 #link-footer a:hover{
     text-decoration:underline;
 }
