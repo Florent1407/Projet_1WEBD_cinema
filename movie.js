@@ -33,15 +33,18 @@ document.addEventListener("DOMContentLoaded", () => {
             .then((response) => response.json())
             .then((data2) => {
               console.log("Réponse de l'API (Deuxième URL) :", data2);
-                const movieData2 = {
-                  summary: data2.Plot,
-                }
+              const movieData2 = {
+                summary: data2.Plot,
+              };
 
               const summaryElement = document.querySelector(".movie-summary");
               summaryElement.textContent = movieData2.summary;
             })
             .catch((error2) => {
-              console.error("Erreur de la requête API (Deuxième URL) :", error2);
+              console.error(
+                "Erreur de la requête API (Deuxième URL) :",
+                error2
+              );
             });
         } else {
           console.error(`Erreur "${movieTitle}" : Film non trouvé`);
@@ -95,11 +98,13 @@ const displayMovieDetails = (movie) => {
   const ratingContainer = document.createElement("div");
   ratingContainer.classList.add("rating");
 
-  for (let i = 1; i <= 5; i++) {
-    const star = document.createElement("i");
-    star.classList.add("rating__star", "far", "fa-star");
-    star.dataset.value = i;
-    ratingContainer.appendChild(star);
+  if (!isNaN(movie.rating)) {
+    for (let i = 1; i <= 5; i++) {
+      const star = document.createElement("i");
+      star.classList.add("rating__star", "far", "fa-star");
+      star.dataset.value = i;
+      ratingContainer.appendChild(star);
+    }
   }
 
   infoContainer.appendChild(ratingContainer);
