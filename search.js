@@ -74,6 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
     previousBtn.disabled = currentPage <= 1;
     nextBtn.disabled =
       currentPage * resultsPerPage >= totalResults || totalResults === 0;
+
+    if (totalResults === 0) {
+      previousBtn.style.display = "none";
+      nextBtn.style.display = "none";
+    } else {
+      previousBtn.style.display = "block";
+      nextBtn.style.display = "block";
+    }
   };
 
   searchBtn.addEventListener("click", () => {
