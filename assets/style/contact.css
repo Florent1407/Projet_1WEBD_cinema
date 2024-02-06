@@ -5,7 +5,7 @@
 }
 
 body {
-    background:#050524;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url('../img/background2.jpg') center/cover no-repeat;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -90,6 +90,7 @@ main{
 
 #contact form input, #contact form textarea#message {
     width: 90%;
+    font-size: 14px;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid rgb(204, 204, 204);
@@ -129,7 +130,7 @@ label input#validation[type="checkbox"] {
 
 #message{
     text-align: center;
-    font-size: 12px;
+    font-size: 9px;
 }
 
 /* MAP */

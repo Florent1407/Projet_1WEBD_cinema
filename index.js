@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Navbar
   const navbar = document.getElementById("navbar");
+
   window.addEventListener("scroll", () => {
-    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-    navbar.classList.toggle("scrolled", scrollPosition > 0);
+    navbar.classList.toggle("scrolled", window.scrollY > 0);
   });
 
   // Bannière
@@ -38,6 +38,19 @@ document.addEventListener("DOMContentLoaded", () => {
   rightArrow.addEventListener("click", () => showSlides((slideIndex += 1)));
 
   nextSlide();
+
+  const viewMore = document.querySelectorAll(
+    ".slide-details button[data-title]"
+  );
+
+  viewMore.forEach((button) => {
+    button.addEventListener("click", () => {
+      const title = button.dataset.title;
+      if (title) {
+        window.location.href = `movie.html?t=${encodeURIComponent(title)}`;
+      }
+    });
+  });
 
   // Films
   const apiKey = "5a0c7cf2";
