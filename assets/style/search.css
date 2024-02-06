@@ -5,7 +5,7 @@
 }
 
 body {
-    background:#050524;
+    background:#050d24;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -122,6 +122,7 @@ h3{
     align-items: center;
     gap: 10px;
 }
+
 
 /*Film*/
 main {

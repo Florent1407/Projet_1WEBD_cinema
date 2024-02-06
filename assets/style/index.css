@@ -5,7 +5,7 @@
 }
 
 body {
-    background:#050524;
+    background:#050d24;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -65,11 +65,9 @@ body {
     text-decoration: none;
 }
 
-
 #link-navbar a:hover {
     text-decoration: underline;
 }
-
 
 .banner .img-cover {
     max-width: 100%;
@@ -96,7 +94,7 @@ body {
     opacity: 0;
     animation: fadeIn 0.7s ease-in-out forwards; 
 }
-/*Décrit comment slide agit le long de l'animation*/
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -176,6 +174,10 @@ body {
 .details-img {
     width: 350px;
     border-radius: 10px;
+}
+
+.details-img:hover {
+    filter: brightness(110%);
 }
 
 .details-text{

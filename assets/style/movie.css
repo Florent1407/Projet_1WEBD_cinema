@@ -63,6 +63,7 @@ body {
     text-decoration: underline;
 }
 
+
 /*Film détails*/
 main{
     padding-top: 50px;
@@ -115,8 +116,8 @@ main{
     margin-top: 10px;
 }
 
-/* Etoiles */
 
+/* Etoiles */
 .rating {
     display: flex;
     margin-top: 10px;
