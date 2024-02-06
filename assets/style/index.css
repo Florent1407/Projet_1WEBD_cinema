@@ -176,11 +176,6 @@ body {
 .details-img {
     width: 350px;
     border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.details-img:hover {
-    transform: scale(1.1); 
 }
 
 .details-text{
