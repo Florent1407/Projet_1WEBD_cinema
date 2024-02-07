@@ -215,9 +215,6 @@ body {
     margin-bottom: 20px;
 }
 
-#movies-row-3, #movies-row-4{
-    display: none;
-}
 
 .movie {
     position: relative;
@@ -289,8 +286,7 @@ body {
     align-items: center;
 }
 
-#load-more,
-#load-less {
+#load-more{
     border: 2px solid #ffffff;
     border-radius: 10px;
     color: #ffffff;
@@ -304,8 +300,7 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#load-more:hover,
-#load-less:hover {
+#load-more:hover{
     background-color:#f0ffff;
     color: #000000;
 }
